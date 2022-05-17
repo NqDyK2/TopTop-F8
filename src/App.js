@@ -14,27 +14,20 @@
 
 //Lesson-48
 import './App.css';
-import Content from './lesson-48/Content';
-import { useState, createContext } from 'react'
-
-export const ThemeContext = createContext()
-
-console.log(ThemeContext);
+import Content from './Content';
+import {useContext} from 'react'
+import {ThemeContext} from './ThemeContext'
 
 function App() {
-  const [theme, setTheme] = useState('Dark')
-  const toggleTheme = () => {
-    setTheme(theme === 'Dark' ? 'Light' : 'Dark')
-  }
+  const context = useContext(ThemeContext)
   return (
-    <ThemeContext.Provider value={theme}>
       <div style={{ padding: 20 }}>
-        <button onClick={toggleTheme}>
+        <button onClick={context.toggleTheme}>
           Toggle Theme
         </button>
         <Content />
       </div>
-    </ThemeContext.Provider>
+
 
   );
 }
